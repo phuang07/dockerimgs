@@ -44,6 +44,10 @@ RUN a2ensite laravel
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 
+# Add this to fix file permission issue when mounting data volume
+# from host machine
+RUN usermod -u 1000 www-data
+
 ADD ./config/start.sh /start.sh
 
 VOLUME /var/log
@@ -51,7 +55,7 @@ VOLUME /var/log
 # test creat a new volume
 # VOLUME /var/www/testvolume
 
-WORKDIR /var/www
+# WORKDIR /var/www
 
 RUN chmod +x /start.sh
 EXPOSE 80 443 3306
