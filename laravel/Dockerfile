@@ -7,6 +7,7 @@ RUN apt-get install -y vim curl
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install php5 php5-cli php5-mcrypt php5-gd php5-json php5-mysql php5-memcached libapache2-mod-php5 php5-curl php5-ldap
 RUN apt-get install -y git-core
 RUN apt-get install -y apache2
+RUN apt-get install -y fish
 
 # Install mysql client and server
 RUN apt-get -y install mysql-client mysql-server 
@@ -54,6 +55,7 @@ WORKDIR /var/www
 
 RUN chmod +x /start.sh
 EXPOSE 80 443 3306
+CMD ["Service", "apache2", "restart"]
 CMD ["/start.sh"]
 
 
