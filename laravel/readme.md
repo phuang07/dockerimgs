@@ -10,6 +10,17 @@ docker run -P -it --name laravel_container -d laravel
 ```bash
 docker exerc -it laravel_container bash
 ```
+
+####To remove all containers
+```bash
+docker rmi $(docker ps -a -q)
+```
+
+####To remove untagged images
+```bash
+docker rmi $(docker images -q --filter "dangling=true")
+```
+
 ##If mac, and using boot2docker:
 To map ip address so that you can access via localhost, run
 ```bash
