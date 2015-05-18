@@ -13,7 +13,7 @@ docker exerc -it laravel_container bash
 
 ####To remove all containers
 ```bash
-docker rmi $(docker ps -a -q)
+docker rm $(docker ps -a -q)
 ```
 
 ####To remove untagged images
