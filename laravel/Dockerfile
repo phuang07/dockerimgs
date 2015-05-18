@@ -56,5 +56,5 @@ RUN usermod -u 1000 www-data
 
 
 EXPOSE 80 443 9000
-CMD ["/usr/bin/supervisord"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
