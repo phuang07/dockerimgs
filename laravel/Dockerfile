@@ -35,7 +35,7 @@ RUN mv composer.phar /usr/local/bin/composer
 RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/run/sshd /var/log/supervisor
 
 COPY ./config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
+COPY ./config/apache.vhost.conf /etc/apache2/sites-enabled/000-default.conf
 
 # Enabled some apache module
 RUN php5enmod mcrypt

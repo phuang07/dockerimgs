@@ -10,6 +10,7 @@ RUN apt-get -y install apache2
 # Install supervisor to enable manage multiple process within a container
 # reference: https://docs.docker.com/articles/using_supervisord/
 RUN apt-get -y install supervisor
+RUN apt-get -y install openssh-server
 
 RUN apt-get -y install php5
 RUN apt-get -y install php5-cli
@@ -46,15 +47,19 @@ RUN a2enmod ssl
 ENV XDEBUG_PORT 9000
 ADD ./config/config_xdebug.sh /config_xdebug.sh
 RUN chmod +x /config_xdebug.sh
-CMD ["/config_xdebug.sh"]
 
 
 # Add this to fix file permission issue when mounting data volume
 # from host machine
 RUN usermod -u 1000 www-data
 
+# Create new user
+# RUN adduser remoteuser
+# RUN echo remoteuser:secret | chpasswd 
+RUN useradd -p $(openssl passwd -1 secret) remoteuser
+RUN gpasswd -a remoteuser sudo
 
 
-EXPOSE 80 443 9000
+EXPOSE 80 443 22 9000
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
