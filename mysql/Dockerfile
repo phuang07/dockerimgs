@@ -14,12 +14,13 @@ ADD ./config/start-database.sh /start-database.sh
 
 ENV user docker
 ENV password secret
+ENV right WRITE
 ENV url file:/database.sql
+
 
 # Install starting script
 
 RUN chmod +x /start-database.sh
 
-RUN chmod +x /start-database.sh
 EXPOSE 3306
 CMD ["/start-database.sh"]
