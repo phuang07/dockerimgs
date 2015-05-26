@@ -24,6 +24,7 @@ The following packages has been installed and configured, refer to the Dockerfil
 - curl
 - supervisor
 - composer
+- mysql-client
 
 ###Server
 - apache2
