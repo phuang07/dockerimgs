@@ -79,7 +79,7 @@ boot2docker ip
 
 #### Create new database 
 In case a new database is needed, provide the following enviornment
-variable in the docker-compose.yaml file will trigger database creattion. See sample below:
+variables in the docker-compose.yaml file will trigger database creation. See sample below:
 
 ```yaml
 pickupprogram:
