@@ -55,6 +55,9 @@ RUN chmod +x /config_xdebug.sh
 ADD ./config/start-database.sh /start-database.sh
 RUN chmod +x /start-database.sh
 
+# Configure custom command
+ADD ./config/custom_command.sh /custom_command.sh
+RUN chmod +x /custom_command.sh
 
 
 # Add this to fix file permission issue when mounting data volume
