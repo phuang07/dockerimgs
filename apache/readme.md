@@ -99,6 +99,7 @@ pickupprogram:
             MYSQL_PASSWORD: pickupprogram
 
 
-
+#### Create custom command for the container
+Custom command will run if an enviornment variable name "CUSTOM_COMMAND" is defined in the docker-composer.yaml. This is very similiar to the database setup described above.
 
 
