@@ -1,32 +1,7 @@
 #!/bin/bash
 
-# This script starts the database server.
-echo "Creating user $user for databases loaded from $url"
-
-# Import database if provided via 'docker run --env url="http:/ex.org/db.sql"'
-echo "Adding data into MySQL"
-file -bi /database.sql
-/usr/sbin/mysqld &
-sleep 5
-curl $url | mysql --default-character-set=utf8
-mysqladmin shutdown
-echo "finished"
-
-# Now the provided user credentials are added
-/usr/sbin/mysqld &
-sleep 5
-echo "Creating user"
-echo "CREATE USER '$user' IDENTIFIED BY '$password'" | mysql --default-character-set=utf8
-echo "REVOKE ALL PRIVILEGES ON *.* FROM '$user'@'%'; FLUSH PRIVILEGES" | mysql --default-character-set=utf8
-echo "GRANT SELECT ON *.* TO '$user'@'%'; FLUSH PRIVILEGES" | mysql --default-character-set=utf8
-echo "finished"
-
-if [ "$right" = "WRITE" ]; then
-echo "adding write access"
-echo "GRANT ALL PRIVILEGES ON *.* TO '$user'@'%' WITH GRANT OPTION; FLUSH PRIVILEGES" | mysql --default-character-set=utf8
+if [ ! -z "$MYSQL_DATABASE" ]; then
+echo "CREATE USER '$MYSQL_USER' IDENTIFIED BY '$MYSQL_PASSWORD'" | mysql -h $MYSQL_PORT_3306_TCP_ADDR -u $MYSQL_ENV_user --password=$MYSQL_ENV_password
+echo "CREATE DATABASE $MYSQL_DATABASE" | mysql -h $MYSQL_PORT_3306_TCP_ADDR -u $MYSQL_ENV_user --password=$MYSQL_ENV_password
+echo "GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%' WITH GRANT OPTION; FLUSH PRIVILEGES" | mysql -h $MYSQL_PORT_3306_TCP_ADDR -u $MYSQL_ENV_user --password=$MYSQL_ENV_password
 fi
-
-# And we restart the server to go operational
-mysqladmin shutdown
-echo "Starting MySQL Server"
-/usr/sbin/mysqld

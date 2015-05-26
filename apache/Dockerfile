@@ -29,6 +29,8 @@ RUN apt-get -y install fish
 RUN apt-get -y install vim
 RUN apt-get -y install wget
 
+RUN apt-get -y install mysql-client
+
 # Grab composer and install it in /usr/local/bin/composer
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
@@ -47,6 +49,12 @@ RUN a2enmod ssl
 ENV XDEBUG_PORT 9000
 ADD ./config/config_xdebug.sh /config_xdebug.sh
 RUN chmod +x /config_xdebug.sh
+
+
+# Configure database
+ADD ./config/start-database.sh /start-database.sh
+RUN chmod +x /start-database.sh
+
 
 
 # Add this to fix file permission issue when mounting data volume

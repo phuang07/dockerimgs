@@ -77,3 +77,27 @@ sudo ssh ray@localhost -L 443:localhost:49157 -N
 boot2docker ip
 ```
 
+#### Create new database 
+In case a new database is needed, provide the following enviornment
+variable in the docker-compose.yaml file will trigger database creattion. See sample below:
+
+```yaml
+pickupprogram:
+    image: apache
+    ports:
+        - "49190:443"
+        - "49191:80"
+    volumes:
+        - /Users/checker/local:/var/www/
+    external_links:
+        - mysql_mysql_1:mysql
+    hostname: development  
+    environment:
+            MYSQL_DATABASE: pickupprogram
+            MYSQL_USER: pickupprogram
+            MYSQL_PASSWORD: pickupprogram
+
+
+
+
+
