@@ -55,7 +55,9 @@ RUN chmod +x /config_xdebug.sh
 ADD ./config/start-database.sh /start-database.sh
 RUN chmod +x /start-database.sh
 
-
+# Fix term variable that prevent fish shell fireup properly
+# http://blog.elab.io/2015/05/fish-shell-could-not-set-up-terminal.html
+ENV TERM linux
 
 # Add this to fix file permission issue when mounting data volume
 # from host machine
