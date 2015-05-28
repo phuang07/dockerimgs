@@ -75,7 +75,13 @@ sudo ssh ray@localhost -L 443:localhost:49157 -N
 
 ####Get VM's Host only interface IP:
 ```bash
-boot2docker ip
+boot2docker ip #192.168.59.103
+```
+
+## SSH into the container. Not recommented.
+Port 22 has exposed to 49192, credential: username: remoteuser passwd: secret
+```bash
+ssh -p 49192 remoteuser@192.168.59.103
 ```
 
 #### Create new database 
