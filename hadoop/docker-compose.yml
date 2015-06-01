@@ -1,0 +1,7 @@
+hadoop:
+    image: hadoop
+    ports:
+        - "49194:8021"
+        - "49195:8032"
+        - "49196:22"
+    hostname: hadoop 
