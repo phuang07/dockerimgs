@@ -12,18 +12,23 @@ apt-get -y install supervisor && \
 apt-get -y install openssh-server && \
 apt-get -y install fish && \
 apt-get -y install vim && \
-apt-get -y install oracle-java7-installer && \
 rm -rf /var/lib/apt/lists/*
 
 
-# Select Sun's Java as the default on your machine.
-# # See 'sudo update-alternatives --config java' for more information.
-RUN update-java-alternatives -s java-7-oracle
-ENV JAVA_HOME /usr/lib/jvm/java-7-oracle/jre/bin/java
+# java
+RUN mkdir -p /usr/java/default && \
+    curl -Ls 'http://download.oracle.com/otn-pub/java/jdk/7u51-b13/jdk-7u51-linux-x64.tar.gz' -H 'Cookie: oraclelicense=accept-securebackup-cookie' | \
+    tar --strip-components=1 -xz -C /usr/java/default/
+ENV JAVA_HOME /usr/java/default/
+ENV PATH $PATH:$JAVA_HOME/bin
 
-ADD ./config/hadoop-1.2.1 /etc/hadoop-1.2.1
-ENV HADOOP_INSTALL /etc/hadoop-1.2.1
-ENV PATH /etc/hadoop-1.2.1/bin:/etc/hadoop-1.2.1/sbin:$PATH
+# hadoop
+RUN curl -s http://www.eu.apache.org/dist/hadoop/common/hadoop-2.6.0/hadoop-2.6.0.tar.gz | tar -xz -C /usr/local/
+RUN cd /usr/local && ln -s ./hadoop-2.6.0 hadoop
+ENV HADOOP_PREFIX /usr/local/hadoop
+RUN export PATH=$PATH:$HADOOP_PREFIX/bin:$HADOOP_PREFIX/sbin
+RUN sed -i '/^export JAVA_HOME/ s:.*:export JAVA_HOME=/usr/java/default\nexport HADOOP_PREFIX=/usr/local/hadoop\nexport HADOOP_HOME=/usr/local/hadoop\n:' $HADOOP_PREFIX/etc/hadoop/hadoop-env.sh
+RUN sed -i '/^export HADOOP_CONF_DIR/ s:.*:export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop/:' $HADOOP_PREFIX/etc/hadoop/hadoop-env.sh
 
 
 RUN mkdir -p var/run/sshd /var/log/supervisor
@@ -37,6 +42,11 @@ RUN chmod +x /custom_command.sh
 # Enable password-less login
 RUN ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
 RUN cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+
+# Fix term variable that prevent fish shell fireup properly
+# # http://blog.elab.io/2015/05/fish-shell-could-not-set-up-terminal.html
+ENV TERM linux
+
 
 # Some ports are expose for MapReduce 1/2
 EXPOSE 8021 8032 22
