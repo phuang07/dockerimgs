@@ -100,9 +100,10 @@ pickupprogram:
         - mysql_mysql_1:mysql
     hostname: development  
     environment:
-            MYSQL_DATABASE: pickupprogram
-            MYSQL_USER: pickupprogram
-            MYSQL_PASSWORD: pickupprogram
+            MYSQL_DATABASE:dbname 
+            MYSQL_USER: dbusername
+            MYSQL_PASSWORD: dbpasswd
+            CUSTOM_COMMAND: ln -s /var/www/laravel/public /var/www/appname
 ```
 
 #### Create custom command for the container

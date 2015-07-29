@@ -1,8 +1,8 @@
 FROM ubuntu:14.04
 
 # Update and install dependencies
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive 
-# RUN apt-get upgrade
+RUN apt-get -y update && DEBIAN_FRONTEND=noninteractive 
+RUN apt-get -y upgrade
 
 RUN apt-get -y install curl
 RUN apt-get -y install apache2
