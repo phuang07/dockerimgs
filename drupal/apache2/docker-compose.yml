@@ -1,0 +1,5 @@
+apache:
+    image: apache
+    ports:
+        - "49320:443"
+        - "49391:80"
