@@ -1,5 +1,5 @@
 mysql:
-    image: mysql
+    image: leoman730/mysql
     ports:
         - "49187:3306"
     hostname: mysql  
