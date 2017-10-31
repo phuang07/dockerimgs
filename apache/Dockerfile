@@ -73,6 +73,9 @@ RUN usermod -u 1000 www-data
 RUN useradd -p $(openssl passwd -1 secret) remoteuser
 RUN gpasswd -a remoteuser sudo
 
+VOLUME ["/var/www/","/etc/apache2/sites-enabled"]
+
+
 
 EXPOSE 80 443 22 9000
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
