@@ -1,7 +1,7 @@
 tomcat-solr:
-    image: leoman730/tomcat-solr:v1.0
+    image: leoman730/tomcat-solr:v1.1
     ports:
-        - "8983:8983"
-        - "8443:8443"
-        - "49192:22"
+        - "8985:8983"
+        - "8445:8443"
+        - "49195:22"
     hostname: tomcat-solr
