@@ -9,4 +9,4 @@ Versions:
 
 Features:
 * SSL enabled
-* Out of box Drupal based files
+* Out of box Drupal core files
