@@ -1,0 +1,7 @@
+web:
+    image: drupal7.56-apache2-php5.6
+    ports:
+        - "8080:80"
+        - "8442:443"
+        - "212:22"
+    hostname: web  
