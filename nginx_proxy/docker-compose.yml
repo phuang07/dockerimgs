@@ -1,0 +1,5 @@
+proxy:
+    image: leoman730/nginx_proxy
+    ports:
+      - "80:80",
+      - "443:443"
