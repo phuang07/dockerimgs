@@ -1,9 +1,0 @@
-hadoop:
-    image: hadoop
-    ports:
-        - "49194:8021"
-        - "49195:8032"
-        - "49196:22"
-    volumes:
-        - /Users/ray/git_repos/dockerimgs/hadoop:/tmp/
-    hostname: hadoop 

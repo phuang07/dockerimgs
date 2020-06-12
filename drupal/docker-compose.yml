@@ -1,15 +1,26 @@
-php53:
-    image: php53
-    environment:
-        PHP_SITE_NAME: dev
-    volumes:
-        - /Users/ray/git_repos/nyu-law/drupal/:/var/www/html
+version: '2'
 
-apache:
-    image: apache
-    volumes_from:
-        - php53
-    ports:
-        - "49170:80"
-        - "49172:443"
-    hostname: development
+services:
+    php53:
+        image: php53
+        depends_on:
+            - mysql
+        volumes:
+            - /Users/ray/git_repos/nyu-law/drupal/:/var/www/html
+        environment:
+            PHP_SITE_NAME: php53
+
+    apache:
+        image: apache
+        volumes_from:
+            - php53
+        ports:
+            - "49170:80"
+            - "49172:443"
+        hostname: development
+
+    mysql:
+        image: leoman730/mysql
+        ports:
+            - "49187:3306"
+        hostname: mysql

@@ -1,0 +1,22 @@
+# frozen_string_literal: true
+source "https://rubygems.org"
+
+git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+
+# gem "rails"
+
+# gem "jekyll", "~> 3.8.5"
+
+group :jekyll_plugins do
+  # gem 'jekyll-algolia', '~> 1.0'
+  # gem 'jekyll-compose'
+  # gem 'jekyll-paginate', '~> 1.1'
+  # gem 'jekyll-gist'
+  # gem 'jekyll-seo-tag'
+  gem 'jekyll-sitemap'
+  # gem 'disqus-for-jekyll'
+  # gem 'jekyll-category-pages'
+  # gem 'jekyll-last-modified-at'
+  gem 'jekyll-sass-converter', '~> 2.0.1'
+end
+
