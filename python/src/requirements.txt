@@ -1,0 +1,6 @@
+networkx
+termcolor
+matplotlib
+numpy
+notebook
+
