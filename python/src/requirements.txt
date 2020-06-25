@@ -2,5 +2,10 @@ networkx
 termcolor
 matplotlib
 numpy
-notebook
-
+mammoth
+beautifulsoup4
+python-slugify
+datetime
+htmlmin
+jupyterlab
+jupyter_contrib_nbextensions
