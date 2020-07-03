@@ -37,7 +37,8 @@ npm
 
 
 RUN pip3 install pynvim
-
+RUN ln -s /usr/bin/python /usr/local/bin/python
+RUN ln -s /usr/bin/python3 /usr/local/bin/python3
 
 # Create user "docker" with sudo powers
 RUN useradd -m "${UNAME}" && \

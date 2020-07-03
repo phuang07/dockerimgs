@@ -1,0 +1,29 @@
+snippet viewport
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+endsnippet
+
+snippet todo "To do annotation" b
+<!-- TODO: `echo $USER` ${1:desc} `!v strftime('%c')` --> 
+endsnippet
+
+
+snippet media-xs "Media query for extra small screen size"
+@media (min-width: @screen-xs-min) and (max-width: @screen-sm-max) {
+	${1}
+}
+endsnippet
+
+
+snippet media-md "Media query for medium screen size"
+@media (min-width: @screen-md-min) {
+	${1}
+}
+endsnippet
+
+
+snippet media-lg "Media query for large screen size"
+@media (min-width: @screen-lg-min) {
+	${1}
+}
+endsnippet
+

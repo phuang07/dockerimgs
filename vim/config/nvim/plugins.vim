@@ -24,8 +24,8 @@ Plug 'chriskempson/base16-vim'
 
 " utilities
 Plug 'tpope/vim-abolish'
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons' " file drawer
-" Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim' " fuzzy file finder and so much more
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+" | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons' " file drawer
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'mileszs/ack.vim' " search inside files using ack. Same as command line ack utility, but use :Ack
 Plug 'junegunn/goyo.vim' " Distraction-free writing in Vim
@@ -118,7 +118,6 @@ Plug 'gko/vim-coloresque'
 
 " markdown
 Plug 'itspriddle/vim-marked', { 'for': 'markdown', 'on': 'MarkedOpen' } " Open markdown files in Marked.app - mapped to <leader>m
-" Plug 'tpope/vim-markdown', { 'for': 'markdown' } " markdown support
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' } " Markdown Vim Mode See: https://github.com/plasticboy/vim-markdown
 
 

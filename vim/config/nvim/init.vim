@@ -1,6 +1,7 @@
 source ~/.config/nvim/plugins.vim
 
 " Section General {{{
+set encoding=UTF-8
 
 " Abbreviations
 abbr funciton function
@@ -35,35 +36,14 @@ endif
 
 " }}}
 
+
+
 " Section User Interface {{{
 
 syntax on
 set t_Co=256                " Explicitly tell vim that the terminal supports 256 colors"
-
-" switch cursor to line when in insert mode, and block when not
-set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-  \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-  \,sm:block-blinkwait175-blinkoff150-blinkon175
-
-if &term =~ '256color'
-    " disable background color erase
-    set t_ut=
-endif
-
-" enable 24 bit color support if supported
-if (has('mac') && empty($TMUX) && has("termguicolors"))
-    set termguicolors
-endif
-
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-else
-	let g:onedark_termcolors=16
-	let g:onedark_terminal_italics=1
-
-	colorscheme onedark
-endif
+colorscheme onedark
+set termguicolors
 
 
 

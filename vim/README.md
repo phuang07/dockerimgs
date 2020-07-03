@@ -5,8 +5,6 @@ docker run -it --rm -v "$PWD":/docs -w /docs leoman730/neovim python test.py
 docker run -it --rm -v "$PWD":/docs -w /docs leoman730/neovim jupyter notebook --ip=0.0.0.0 --allow-root
 
 ```
-
-
 ## Build image
 ```
 docker build --no-cache -t leoman730/neovim .
