@@ -135,5 +135,9 @@ Plug 'nelsyeung/twig.vim'
 " drupal
 Plug 'https://git.drupal.org/project/vimrc.git', { 'branch': '8.x-1.x', 'rtp': 'bundle/vim-plugin-for-drupal' }
 
+" Letex
+Plug 'lervag/vimtex'
+" A Vim Plugin for Lively Previewing LaTeX PDF Output
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
 call plug#end()

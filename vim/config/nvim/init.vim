@@ -589,4 +589,5 @@ let g:vim_markdown_new_list_item_indent = 2
 " Remove the TableFormat command, the `:Tab \|` is preferred
 autocmd BufRead,BufNewFile *.md delc TableFormat
 
-
+" Remap :q so no warning message show up.
+nmap :q :q!
