@@ -2,6 +2,7 @@ networkx
 termcolor
 matplotlib
 numpy
+scipy
 mammoth
 beautifulsoup4
 python-slugify
@@ -9,3 +10,5 @@ datetime
 htmlmin
 jupyterlab
 jupyter_contrib_nbextensions
+jupyter-kite
+gmpy2

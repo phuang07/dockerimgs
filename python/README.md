@@ -25,4 +25,22 @@ docker login
 docker push leoman730/python:3.8
 ```
 
+## Python packages
+```
+networkx
+termcolor
+matplotlib
+numpy
+mammoth
+beautifulsoup4
+python-slugify
+datetime
+htmlmin
+jupyterlab
+jupyter_contrib_nbextensions
+jupyter-kite
+gympy3
+
+```
+
 
