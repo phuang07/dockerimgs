@@ -10,5 +10,6 @@ datetime
 htmlmin
 jupyterlab
 jupyter_contrib_nbextensions
-jupyter-kite
 gmpy2
+pandas
+nbconvert

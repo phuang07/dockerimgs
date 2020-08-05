@@ -26,11 +26,17 @@ RUN apt-get -qq -y update && \
     DEBIAN_FRONTEND=noninteractive apt-get -qq -y install \
     apt-utils \
     wget \
+    sudo \
     nodejs \
     libgmp-dev \
     libmpfr-dev \
     libmpc-dev \
     gcc \
+    pandoc \
+    texlive \
+    texlive-xetex \
+    texlive-generic-extra \
+    texlive-generic-recommended \
     npm
 
 EXPOSE 8888
@@ -39,7 +45,7 @@ COPY ./src /src
 WORKDIR /src
 RUN python -m pip install --upgrade pip
 RUN pip install -r requirements.txt
-RUN jupyter labextension install @kiteco/jupyterlab-kite
+# RUN jupyter labextension install @kiteco/jupyterlab-kite
 
 
 # Create user "docker" with sudo powers
