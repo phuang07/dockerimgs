@@ -1,112 +1,11 @@
-####About this image
-You may want to use this if you want a simple apache web server with php enabled + xdebug.
-
-The following packages has been installed and configured, refer to the Dockerfile for detail:
-### Base OS: ubuntu:14.04
-###PHP packages:
-- php5
-- php5-cli
-- php5-mcrypt
-- php5-gd
-- php5-json
-- php5-mysql
-- php5-memcached
-- php5-xdebug
-- php5-curl
-- php5-ldap
-- libapache2-mod-php5
-
-###Util packages:
-- git-core
-- fish
-- vim
-- wget
-- curl
-- supervisor
-- composer
-- mysql-client
-
-###Server
-- apache2
-
-
-#### For a more completed list of docker commands
-Go to: https://github.com/leoman730/docker-cheat-sheet
-
-####To build this image, run 
-```bash
-docker build -t {image_name} .
+## Run container
 ```
-####To create a container from this image, and detache run
-```bash
-docker run -P -it --name {container_name} -d {image_name}
-```
-####To access the container
-```bash
-docker exerc -it {container_name} bash
+docker run -it --rm --name simple_apache  -v "$PWD":/usr/local/apache2/htdocs/ -p 8080:80 leoman730/apache:2.4
+
 ```
 
-####To remove all containers
-```bash
-docker rm $(docker ps -a -q)
+
+## Build image
 ```
-
-####To remove untagged images
-```bash
-docker rmi $(docker images -q --filter "dangling=true")
+docker build --no-cache -t leoman730/apache:2.4 .
 ```
-
-####If mac, and using boot2docker:
-To map ip address so that you can access via localhost, run
-```bash
-#!/bin/bash
-# vm must be powered off
-for i in {49000..49900}; do
- VBoxManage modifyvm "boot2docker-vm" --natpf1 "tcp-port$i,tcp,,$i,,$i";
- VBoxManage modifyvm "boot2docker-vm" --natpf1 "udp-port$i,udp,,$i,,$i";
-done
-```
-
-#### Set up ssl tunneling for https connection
-```bash
-#direct traffic from port 443 to 49157
-sudo ssh ray@localhost -L 443:localhost:49157 -N
-```
-
-####Get VM's Host only interface IP:
-```bash
-boot2docker ip #192.168.59.103
-```
-
-#### SSH into the container. Not recommented.
-Port 22 has exposed to 49192, credential: username: remoteuser passwd: secret
-```bash
-ssh -p 49192 remoteuser@192.168.59.103
-```
-
-#### Create new database 
-In case a new database is needed, provide the following enviornment
-variables in the docker-compose.yaml file will trigger database creation. See sample below:
-
-```yaml
-pickupprogram:
-    image: apache
-    ports:
-        - "49190:443"
-        - "49191:80"
-    volumes:
-        - /Users/checker/local:/var/www/
-    external_links:
-        - mysql_mysql_1:mysql
-    hostname: development  
-    environment:
-            MYSQL_DATABASE:dbname 
-            MYSQL_USER: dbusername
-            MYSQL_PASSWORD: dbpasswd
-            CUSTOM_COMMAND: ln -s /var/www/laravel/public /var/www/appname
-```
-
-#### Create custom command for the container
-Custom command will run if an enviornment variable name "CUSTOM_COMMAND" is defined in the docker-composer.yaml. This is very similiar to the database setup described above.
-
-
