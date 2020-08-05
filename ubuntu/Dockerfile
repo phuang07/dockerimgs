@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 
 # Based on https://github.com/matthewfeickert/Docker-Python3-Ubuntu/blob/master/Dockerfile
-MAINTAINER Patrick Ray. Huang 
+MAINTAINER Patrick Ray. Huang
 
 USER root
 
@@ -44,15 +44,22 @@ RUN apt-get -qq -y update && \
         libgraphviz-dev \
         pkg-config \
 	graphviz \
+        ca-certificates \
+        apt-transport-https \
         software-properties-common && \
     mv /usr/bin/lsb_release /usr/bin/lsb_release.bak && \
     apt-get -y autoclean && \
     apt-get -y autoremove && \
     rm -rf /var/lib/apt-get/lists/*
 
+# Install docker
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+RUN sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+RUN apt-get install docker-ce docker-ce-cli containerd.io
+
 # Python stuffs
 COPY install_python.sh install_python.sh
-COPY pip_packages.txt pip_packages.txt 
+COPY pip_packages.txt pip_packages.txt
 RUN bash install_python.sh ${PYTHON_VERSION_TAG} ${LINK_PYTHON_TO_PYTHON3}
 
 COPY init.sh /home/docker/init.sh
