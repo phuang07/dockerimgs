@@ -56,10 +56,16 @@ RUN useradd -m "${UNAME}" && \
     mkdir /home/"${UNAME}"/.config && \
     chown -R --from=root "${UNAME}" /home/"${UNAME}"
 
+
+# Add browser capability
+RUN sudo chmod +x install_browsers.sh
+RUN ./install_browsers.sh
+
 WORKDIR /home/"${UNAME}"/docs
 ENV HOME /home/"${UNAME}"
 ENV USER "${UNAME}"
 USER "${UNAME}"
 
+
 #Execution
-CMD python hello_python.py
+CMD python src/hello_python.py

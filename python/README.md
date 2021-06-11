@@ -40,6 +40,13 @@ jupyterlab
 jupyter_contrib_nbextensions
 jupyter-kite
 gympy3
+selenium
+asyncio
+aiohttp
+aiofiles
+arsenic
+nest_asyncio
+structlog
 
 ```
 

@@ -10,6 +10,14 @@ datetime
 htmlmin
 jupyterlab
 jupyter_contrib_nbextensions
+jupyter-kite
 gmpy2
 pandas
 nbconvert
+selenium
+asyncio
+aiohttp
+aiofiles
+arsenic
+nest_asyncio
+structlog
