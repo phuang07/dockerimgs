@@ -19,5 +19,8 @@ RUN sed -i \
         -e 's/^#\(LoadModule .*mod_socache_shmcb.so\)/\1/' \
         conf/httpd.conf
 
+
+RUN echo "Mutex posixsem" >> conf/httpd.conf
+
 EXPOSE 80 443 22 8080
 
